@@ -12,8 +12,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import net.sf.json.JSONObject;
-
+import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -66,8 +65,8 @@ public class ManageMediaAction extends ManageBaseAction {
 	@ResponseBody
 	@RequestMapping(value = "/list.json", method = RequestMethod.GET)
 	public String attachment(@RequestParam("kindId") long kindId) {
-		List<Media> attachmentList = attachmentService.getMediaListByKindId(
-				kindId, MediaConstant.Kind.article, 100);
+		List<Media> attachmentList = attachmentService.getMediaListByKindId(kindId, MediaConstant.Kind.article, 100);
+
 		JSONObject json = new JSONObject();
 		json.put("attachmentList", attachmentList);
 		return json.toString();

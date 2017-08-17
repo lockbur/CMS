@@ -9,9 +9,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -213,7 +212,7 @@ public class ManageFolderAction extends ManageBaseAction {
 	public JsonVo<String> delete(
 			@RequestParam(value = "sortJson") String sortJson) {
 		JsonVo<String> json = new JsonVo<String>();
-		JSONArray array = JSONArray.fromObject(sortJson);
+		JSONArray array = JSONArray.parseArray(sortJson);
 		for (int i = 0; i < array.size(); i++) {
 			JSONObject folder = array.getJSONObject(i);
 			String folderId = folder.get("folderId").toString();

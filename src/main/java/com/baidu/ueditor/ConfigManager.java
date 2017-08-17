@@ -10,9 +10,9 @@ import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.baidu.ueditor.define.ActionMap;
 
 /**
@@ -132,13 +132,13 @@ public final class ConfigManager {
 		case ActionMap.LIST_IMAGE:
 			conf.put("allowFiles", this.getArray("imageManagerAllowFiles"));
 			conf.put("dir", this.jsonConfig.getString("imageManagerListPath"));
-			conf.put("count", this.jsonConfig.getInt("imageManagerListSize"));
+			conf.put("count", this.jsonConfig.getIntValue("imageManagerListSize"));
 			break;
 
 		case ActionMap.LIST_FILE:
 			conf.put("allowFiles", this.getArray("fileManagerAllowFiles"));
 			conf.put("dir", this.jsonConfig.getString("fileManagerListPath"));
-			conf.put("count", this.jsonConfig.getInt("fileManagerListSize"));
+			conf.put("count", this.jsonConfig.getIntValue("fileManagerListSize"));
 			break;
 
 		}
@@ -163,7 +163,7 @@ public final class ConfigManager {
 		String configContent = this.readFile(this.getConfigPath());
 
 		try {
-			JSONObject jsonConfig = JSONObject.fromObject(configContent);
+			JSONObject jsonConfig = JSONObject.parseObject(configContent);
 			this.jsonConfig = jsonConfig;
 		} catch (Exception e) {
 			this.jsonConfig = null;
